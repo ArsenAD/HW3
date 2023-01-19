@@ -74,11 +74,12 @@ async def load_age(message: types.Message, state: FSMContext):
         else:
             if 16 < int(message.text) < 50:
                 async with state.proxy() as data:
-                    data['age'] = message.text
+                    data['mentors_age'] = message.text
                 await FsmAdmin.next()
                 await message.answer("c какой группы мeнтор?", reply_markup=cancel_markup)
             else:
                 await message.answer("Доступ воспрещен!")
+                await state.finish()
     except ValueError:
         await message.answer("Числа брат, числа")
 
