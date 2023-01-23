@@ -5,7 +5,7 @@ from aiogram.dispatcher.filters.state import State, StatesGroup
 from random import choice
 from keyboards.client_kb import submit_markup, cancel_markup
 from config import ADMINS
-
+from database.bot_db import sql_command_insert
 
 def id_gen():
     pers_id = ''
@@ -96,6 +96,7 @@ async def load_group(message: types.Message, state: FSMContext):
 
 async def submit(message: types.Message, state: FSMContext):
     if message.text.lower() == "да":
+        await sql_command_insert(state)
         await state.finish()
     elif message.text.lower() == "нет":
         await state.finish()
