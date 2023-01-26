@@ -3,7 +3,6 @@ from config import bot, ADMINS
 from random import choice
 
 
-# @dp.message_handler()
 async def echo(message: types.Message):
     if message.text.isdigit():
         await bot.send_message(message.from_user.id, int(message.text) ** 2)

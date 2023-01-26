@@ -3,7 +3,6 @@ from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
-# @dp.callback_query_handler(text='button_call_1')
 async def quiz_2(message: types.Message):
     murkup = InlineKeyboardMarkup()
     button_call_2 = InlineKeyboardButton('NEXT2', callback_data='button_call_2')
@@ -54,6 +53,9 @@ async def quiz_3(message: types.Message):
         open_period=20,
         reply_markup=murkup
     )
+
+
+
 async def quiz_4(message: types.Message):
     pass
 

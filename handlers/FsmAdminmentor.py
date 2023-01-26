@@ -24,7 +24,6 @@ class FsmAdmin(StatesGroup):
     group = State()
     submit = State()
 
-
 async def fsm_start(message: types.Message):
     if message.chat.type == 'private' and message.chat.id in ADMINS:
         await FsmAdmin.mentors_id.set()
@@ -32,11 +31,9 @@ async def fsm_start(message: types.Message):
     else:
         await message.answer("Пиши в личку!")
 
-async def cancel_reg(message: types.Message, state: FSMContext):
-    current_state = await state.get_state()
-    if current_state is not None:
-        await state.finish()
-        await message.answer("Cancled")
+
+
+
 
 
 async def load_id(message: types.Message, state: FSMContext):
@@ -103,6 +100,11 @@ async def submit(message: types.Message, state: FSMContext):
     else:
         await message.answer("Нe понял!?")
 
+async def cancel_reg(message: types.Message, state: FSMContext):
+    current_state = await state.get_state()
+    if current_state is not None:
+        await state.finish()
+        await message.answer("Cancled")
 
 def register_handlers_mentors(dp: Dispatcher):
     dp.register_message_handler(cancel_reg, state='*', commands=['CANCLE'])
