@@ -1,6 +1,7 @@
 from config import bot
 from aiogram import types, Dispatcher
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
+from parser.movie import parser
 
 
 
@@ -37,14 +38,26 @@ async def quiz_1(message: types.Message):
         reply_markup=murkup
     )
 
-# @dp.message_handler(commands=['mem'])
 async def mem1(message: types.Message):
     photo = open('media/mem4ik.jpg', 'rb')
     await bot.send_photo(message.chat.id, photo=photo)
     photo.close()
+
+async def get_movie(message: types.Message):
+    movie = parser()
+    for i in movie:
+        await message.answer(
+            f"{i['link']}\n\n"
+            f"{i['title']}\n"
+            f"{i['date']}\n"
+            f"{i['gener']}\n"
+            f"{i['views']}\n"
+        )
+
 
 
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(mem1, commands=['mem'])
+    dp.register_message_handler(get_movie, commands=['movie'])

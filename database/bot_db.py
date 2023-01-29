@@ -19,9 +19,6 @@ def sql_create():
                "mentors_group TEXT)")
     db.commit()
 
-sql_create()
-
-
 async def sql_command_insert(state):
     async with state.proxy() as data:
         cursor.execute("INSERT INTO mentors (t_id, mentorsname, direction, age, mentors_group) VALUES"
