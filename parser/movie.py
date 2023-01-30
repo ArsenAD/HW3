@@ -26,11 +26,13 @@ def get_data(html):
             'title': item.find('span', class_="app-shows-card-title").find('a').string,
             'date': info[0],
             'genre': info[1],
-            'views': item.fing('span', class_="app-shows-card-labels").sting
+            'views': item.fing('span', class_="app-shows-card-labels").string
 
         }
         movies.append(new)
     return movies
+html = get_html(URL)
+get_data(html.text)
 
 
 def parser():
