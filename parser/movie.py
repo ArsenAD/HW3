@@ -20,32 +20,34 @@ def get_data(html):
     items = soup.find_all("div", class_="app-shows-item-full")
     movies = []
     for item in items:
-        info = item.find('span', class_="app-shows-card-tooltip").string.split(', '),
+        info = list(
+            item.find('span', class_="app-shows-card-tooltip").getText().replace('\n', '').replace('\t', '').replace(' ', '').split(","))
         new = {
-            'link': item.find('a').get('href'),
+            # 'photo': item.find('a').get('img'),
+            'link': 'https://www.ts.kg'+(item.find('a').get('href')),
             'title': item.find('span', class_="app-shows-card-title").find('a').string,
             'date': info[0],
-            'genre': info[1],
-            'views': item.fing('span', class_="app-shows-card-labels").string
+            'views': item.find('span', class_="app-shows-card-labels").getText().replace('\n', '').replace('0', '').replace(' ', '')
 
         }
         movies.append(new)
+        # pprint(movies)
     return movies
-html = get_html(URL)
-get_data(html.text)
+# html = get_html(URL)
+# get_data(html.text)
 
 
 def parser():
     html = get_html(URL)
+    movies = []
     if html.status_code == 200:
-        wheel = []
         html = get_html(URL)
-        dong = get_data(html.text)
-        wheel.extend(dong)
+        mov = get_data(html.text)
+        movies.extend(mov)
 
-        return wheel
+        return movies
+
     else:
         raise Exception("Error in parser!")
-
 
 

@@ -5,6 +5,7 @@ from parser.movie import parser
 
 
 
+
 # @dp.message_handler(commands=['start'])
 async def start_handler(message: types.Message):
     await bot.send_message(message.from_user.id,  f'Привет {message.from_user.first_name}!')
@@ -47,11 +48,11 @@ async def get_movie(message: types.Message):
     movie = parser()
     for i in movie:
         await message.answer(
-            f"{i['link']}\n\n"
-            f"{i['title']}\n"
-            f"{i['date']}\n"
-            f"{i['gener']}\n"
-            f"{i['views']}\n"
+            # f"{i['photo']}\n\n"
+            f"ссылка: {i['link']}\n"
+            f"название: {i['title']}\n"
+            f"дата выпуска: {i['date']}\n"
+            f"кол-во просмотров: {i['views']}\n"
         )
 
 
