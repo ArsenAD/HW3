@@ -3,6 +3,7 @@ from config import dp, bot, ADMINS
 import logging
 from handlers import client, callback, extra, admin, FsmAdminmentor, notification
 from database.bot_db import sql_create
+import qrcode
 
 
 async def on_startup(_):
@@ -11,6 +12,7 @@ async def on_startup(_):
     sql_create()
 
 
+qrcode.register_handlers_qr(dp)
 notification.register_handler_notification(dp)
 client.register_handlers_client(dp)
 callback.register_handlers_callback(dp)

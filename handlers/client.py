@@ -14,7 +14,7 @@ async def start_handler(message: types.Message):
 
     await message.reply('коммент на ваше сообщение')
 
-# @dp.message_handler(commands=['quiz'])
+
 async def quiz_1(message: types.Message):
     murkup = InlineKeyboardMarkup()
     button_call_1 = InlineKeyboardButton('NEXT', callback_data='button_call_1')
